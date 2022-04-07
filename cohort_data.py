@@ -166,8 +166,11 @@ def all_data(filename):
     """
 
     all_data = []
-
     # TODO: replace this with your code
+    data = open(filename).read().split('\n')
+    for i in data:
+        student = tuple(i.split('|'))
+        all_data.append(student)
 
     return all_data
 
@@ -194,6 +197,10 @@ def get_cohort_for(filename, name):
     """
 
     # TODO: replace this with your code
+    data = open(filename).read().split('\n')
+    for i in data:
+        if name == i.split('|')[0] + ' ' + i.split('|')[1]:
+            return i.split('|')[4]
 
 
 def find_duped_last_names(filename):
@@ -211,6 +218,16 @@ def find_duped_last_names(filename):
     """
 
     # TODO: replace this with your code
+    data = open(filename).read().split('\n')
+    lastnames = []
+    try:
+        for i in data:
+            lastnames.append(i.split('|')[1])
+    except IndexError:
+        pass
+
+    uniq = set([x for x in lastnames if lastnames.count(x) > 1])
+    return sorted(uniq)
 
 
 def get_housemates_for(filename, name):
