@@ -243,6 +243,22 @@ def get_housemates_for(filename, name):
     """
 
     # TODO: replace this with your code
+    data = open(filename).read().split('\n')
+    housemates = []
+    for i in data:
+        try:
+            if name == i.split('|')[0] + ' ' + i.split('|')[1]:
+                house = i.split('|')[2]
+        except IndexError:
+            pass
+    for i in data:
+        try:
+            if i.split('|')[2] == house:
+                housemates.append(i.split('|')[0] + ' ' + i.split('|')[1])
+        except IndexError:
+            pass
+
+    return housemates
 
 
 ##############################################################################
